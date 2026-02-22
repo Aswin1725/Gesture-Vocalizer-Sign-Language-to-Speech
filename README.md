@@ -1,27 +1,36 @@
-# Project Overview
-This project aims to convert sign language gestures into vocalized speech, enabling more effective communication for the hearing-impaired community.
+### Block Diagram
+This block diagram illustrates the architecture of the Gesture Vocalizer system. The main components include:
+- Sensor Module: Detects hand gestures.
+- Microcontroller: Processes the gesture data to produce speech.
+- Speaker: Outputs the converted speech.
+- Power Source: Powers the entire system.
 
-# Hardware Components
-- Microcontroller (e.g., Arduino)
-- Flex Sensors
-- I2C Compatible Sensors
-- Buzzer
-y- Power Supply (e.g., Battery)
+### Circuit Details
+The circuit consists of the following components:
+1. Arduino UNO microcontroller
+2. Ultrasonic Sensor
+3. Servo Motors
+4. Speaker
+5. Power supply unit
+The connections must be made as follows:
+- Connect the ultrasonic sensor to digital pins 7 and 8.
+- The servo motors should be connected to pin 9.
+- The speaker is connected to pin 10.
 
-# System Architecture
-![Block Diagram](link_to_block_diagram)
+```cpp
+// Deaf_and_dumb_code.ino
+#include <Servo.h>
+Servo myServo;
 
-## Circuit Diagram Description
-The circuit integrates the flex sensors and I2C sensors for data acquisition, which is processed by the microcontroller. Output is generated via a speaker or buzzer.
+void setup() {
+  myServo.attach(9);
+  Serial.begin(9600);
+}
 
-# Flex Sensor Circuit
-The flex sensors are connected in a voltage divider configuration, providing variable voltage output based on bending angle.
-
-# I2C Communication Details
-Communication is established between the microcontroller and various I2C sensors providing gesture data for processing.
-
-# Features
-- Real-time gesture recognition
-- Lightweight and portable
-- User-friendly interface
-- Supports multiple sign languages for versatility.
+void loop() {
+  // Add your code here
+  Serial.println("Gesture detected, processing...");
+  // Control the servo motor
+  myServo.write(90);
+}
+```
